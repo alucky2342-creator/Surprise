@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A sweet virtual birthday surprise gift." />
+  <title>Birthday Surprise</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="assets/music/birthday-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="floating-area" aria-hidden="true">
+    <span>🎈</span><span>💖</span><span>⭐</span><span>🎂</span>
+    <span>🌸</span><span>💫</span><span>🎁</span><span>❤️</span>
+  </div>
+
+  <section id="welcomeScreen" class="screen active">
+    <div class="card welcome-card">
+      <p class="mini-title">A little birthday magic</p>
+      <h1>A Special Surprise Is Waiting For You 💝</h1>
+      <p>Today is all about celebrating someone very special.</p>
+      <button type="button" onclick="startSurprise()">Open My Surprise</button>
+      <p class="tiny-note">Tap once and let the surprise begin.</p>
+    </div>
+  </section>
+
+  <section id="loadingScreen" class="screen">
+    <div class="card loading-card">
+      <h2 id="loadingText">Collecting our memories...</h2>
+      <div class="loader" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section id="mainScreen" class="screen">
+    <div class="page-layout compact-layout">
+      <div class="hero compact-hero">
+        <p class="mini-title">For my best friend</p>
+        <h1>Happy Birthday, <span id="friendName">My Best Friend</span> 🎂💖</h1>
+        <p>
+          Today is not just your birthday. It is a beautiful reminder of how special,
+          kind, caring, and wonderful you are.
+        </p>
+      </div>
+
+      <div class="photo-frame compact-photo">
+        <img src="assets/photos/photo1.jpeg" alt="Birthday memory photo" />
+      </div>
+
+      <div class="message-box compact-message">
+        <h2>For You 💕</h2>
+        <p>
+          Happy Birthday to the most beautiful soul and the best friend anyone could ask for.
+          You bring so much happiness, laughter, and warmth into my life.
+          I feel lucky to have you as my best friend.
+        </p>
+      </div>
+
+      <div class="main-actions visible-actions">
+        <button type="button" class="back-btn" onclick="showWelcome()">Back</button>
+        <button type="button" onclick="showMemories()">See Our Memories</button>
+        <button type="button" onclick="showCatalog()">Open Photo Catalog 💫</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="memoryScreen" class="screen">
+    <div class="card memory-card">
+      <p class="mini-title">A few special moments</p>
+      <h1>Our Beautiful Memories 📸</h1>
+
+      <div class="slideshow">
+        <img id="slideImage" src="assets/photos/photo1.jpeg" alt="Memory photo slideshow" />
+      </div>
+
+      <p id="caption">A memory I will always keep.</p>
+
+      <div class="slide-buttons">
+        <button type="button" onclick="prevSlide()">Previous</button>
+        <button type="button" onclick="nextSlide()">Next</button>
+      </div>
+
+      <div class="screen-actions">
+        <button type="button" class="back-btn" onclick="showMain()">Back</button>
+        <button type="button" class="inside-next-btn" onclick="showSpecialSection()">Why You Are Special</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="specialScreen" class="screen">
+    <div class="card special-card">
+      <p class="mini-title">The best things about you</p>
+      <h1>What Makes You So Special 🌸</h1>
+
+      <div class="qualities">
+        <div>You always make people smile.</div>
+        <div>You care so deeply.</div>
+        <div>You make every moment better.</div>
+        <div>You are strong, kind, and wonderful.</div>
+        <div>Life feels lighter with you in it.</div>
+      </div>
+
+      <div class="screen-actions">
+        <button type="button" class="back-btn" onclick="showMemories()">Back</button>
+        <button type="button" class="inside-next-btn" onclick="showFinalMessage()">Final Surprise</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="finalScreen" class="screen">
+    <div class="card final-card">
+      <p class="mini-title">One last message</p>
+      <h1>One Last Message For You 💖</h1>
+
+      <p>
+        You are not just my best friend, you are one of the most special people in my life.
+        Thank you for all the laughter, care, support, and beautiful memories.
+        I truly feel lucky to have you.
+      </p>
+
+      <p>
+        May your birthday be filled with happiness, love, success, smiles,
+        and everything your heart wishes for.
+      </p>
+
+      <h2>Happy Birthday Once Again 💝</h2>
+
+      <div class="final-actions">
+        <button type="button" class="back-btn" onclick="showSpecialSection()">Back</button>
+        <button type="button" onclick="launchConfetti()">Click For One More Surprise 🎁</button>
+        <button type="button" class="catalog-btn" onclick="showCatalog()">Open Photo Catalog 💫</button>
+      </div>
+
+      <p class="made-line">Made with love, only for you 💕</p>
+    </div>
+  </section>
+
+
+  <section id="catalogScreen" class="screen">
+    <div class="card catalog-card warm-catalog-card">
+      <p class="mini-title">A warm album of memories</p>
+      <h1>Photo Catalog Just For You 💫</h1>
+      <p class="catalog-intro">
+        Some photos are not just pictures. They are tiny pieces of beautiful memories.
+      </p>
+
+      <div class="warm-gallery" aria-label="Warm photo catalog">
+        <div class="warm-feature-photo">
+          <img id="catalogFeaturedImage" src="assets/photos/photo1.jpeg" alt="Featured catalog photo" />
+          <div class="warm-photo-glow"></div>
+        </div>
+
+        <div class="warm-photo-strip">
+          <button type="button" class="warm-thumb active-thumb" onclick="showCatalogPhoto(0)">
+            <img src="assets/photos/photo1.jpeg" alt="Catalog thumbnail 1" />
+          </button>
+          <button type="button" class="warm-thumb" onclick="showCatalogPhoto(1)">
+            <img src="assets/photos/photo2.jpeg" alt="Catalog thumbnail 2" />
+          </button>
+          <button type="button" class="warm-thumb" onclick="showCatalogPhoto(2)">
+            <img src="assets/photos/photo3.jpeg" alt="Catalog thumbnail 3" />
+          </button>
+          <button type="button" class="warm-thumb" onclick="showCatalogPhoto(3)">
+            <img src="assets/photos/photo4.jpeg" alt="Catalog thumbnail 4" />
+          </button>
+          <button type="button" class="warm-thumb" onclick="showCatalogPhoto(4)">
+            <img src="assets/photos/photo5.jpeg" alt="Catalog thumbnail 5" />
+          </button>
+        </div>
+      </div>
+
+      <p id="catalogWarmCaption" class="catalog-note">Every picture has a memory, and every memory has you in it 💖</p>
+
+      <div class="catalog-actions">
+        <button type="button" class="back-btn" onclick="showFinalMessage()">Back</button>
+        <button type="button" onclick="nextCatalogPhoto()">Next Photo ✨</button>
+        <button type="button" onclick="launchConfetti()">Celebrate Again 🎉</button>
+      </div>
+    </div>
+  </section>
+
+
+  <button id="musicToggle" type="button" onclick="toggleMusic()" aria-label="Toggle background music">♪</button>
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
